@@ -1208,7 +1208,19 @@ def predict_large_image(
             image_pred[
                 i : min(i + patch_size, img_height), j : min(j + patch_size, img_width)
             ] += (patch_pred * weights)
+<<<<<<< Updated upstream
             labels, coords = label_grains(patch, patch_pred, dbs_max_dist=dbs_max_dist, min_grain_area=min_grain_area)
+=======
+            labels, coords = label_grains(patch, patch_pred, dbs_max_dist=20.0)
+
+            print('plotting unet for sanity check')
+            plt.figure(figsize=(15,10))
+            plt.imshow(image_pred)
+            plt.scatter(np.array(coords)[:,0], np.array(coords)[:,1], c='k')
+            plt.xticks([])
+            plt.yticks([])
+            plt.show()
+>>>>>>> Stashed changes
             if (
                 len(coords) > 0
             ):  # run the SAM algorithm only if there are grains in the patch
